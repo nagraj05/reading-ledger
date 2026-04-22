@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
+/* 🌞 LIGHT THEME */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf7f2;
+  --foreground: #1a1613;
+
+  --accent: #6b4a2f;
+  --accent-ink: #ffffff;
+
+  --surface: #ffffff;
+  --surface-2: #f3eee6;
+
+  --border: #e6dfd3;
+  --border-strong: #d6ccba;
+
+  --ink: #1a1613;
+  --ink-2: #4a4038;
+  --ink-3: #8a8075;
+  --muted: #b5ab9e;
+
+  --danger: #a64b3c;
+  --success: #4a7a3a;
+
+  /* 🎨 Fonts */
+  --font-serif: var(--font-garamond), Georgia, serif;
+  --font-sans-custom: var(--font-sans), system-ui, sans-serif;
+  --font-heading: var(--font-playfair);
+  --font-display: var(--font-fraunces);
+  --font-alt: var(--font-crimson);
 }
 
+/* 🌙 DARK THEME */
+html[data-theme="dark"] {
+  --background: #17140f;
+  --foreground: #f2ece1;
+
+  --surface: #1f1b15;
+  --surface-2: #26221b;
+
+  --border: #2e2921;
+  --border-strong: #3d3730;
+
+  --ink: #f2ece1;
+  --ink-2: #c9c0b2;
+  --ink-3: #8a8075;
+
+  --muted: #5a5147;
+}
+
+/* ⚙️ Tailwind v4 mapping */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+
+  --color-muted: var(--muted);
+
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  /* ✅ Default font */
+  --font-sans: var(--font-sans-custom);
+  --font-serif: var(--font-serif);
+
+  /* 🎨 Custom font utilities */
+  --font-heading: var(--font-heading);
+  --font-display: var(--font-display);
+  --font-alt: var(--font-alt);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* 🌍 Global styles */
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  font-family: var(--font-sans-custom);
 }
