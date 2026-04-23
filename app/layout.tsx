@@ -10,6 +10,7 @@ import {
   DM_Sans,
 } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/ui/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { cn } from "@/lib/utils";
@@ -96,10 +97,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>
-          <Header />
-          {children}
-        </ThemeProvider>
+        <ClerkProvider>
+          <ThemeProvider>
+            <Header />
+            {children}
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
