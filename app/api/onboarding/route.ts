@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs/server";
-import { sql, initTables } from "@/lib/db";
+import { sql, initTables, upsertUser, markUserOnboarded } from "@/lib/db";
 
 interface Author {
   id: number;
@@ -15,6 +15,7 @@ export async function POST(req: Request) {
   if (!authors?.length) return Response.json({ error: "No authors provided" }, { status: 400 });
 
   await initTables();
+  await upsertUser(userId);
 
   await Promise.all(
     authors.map((a) =>
@@ -25,6 +26,8 @@ export async function POST(req: Request) {
       `
     )
   );
+
+  await markUserOnboarded(userId);
 
   return Response.json({ ok: true });
 }
