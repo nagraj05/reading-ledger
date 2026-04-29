@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useClerk, useUser } from "@clerk/nextjs";
 import { TweaksPanel } from "@/components/ui/TweaksPanel";
+import { UserMenu } from "@/components/ui/UserMenu";
 
 export default function Header() {
   const [showTweaks, setShowTweaks] = useState(false);
+  const { isSignedIn } = useUser();
+  const { openSignIn, openSignUp } = useClerk();
 
   return (
     <header className="border-b border-border bg-surface">
       <div
-        className="mx-auto flex items-center justify-between h-14 px-5"
+        className="mx-auto flex items-center justify-between h-14"
         style={{ maxWidth: "1240px", padding: "0 clamp(20px, 4vw, 56px)" }}
       >
         {/* Brand */}
@@ -28,6 +32,7 @@ export default function Header() {
 
         {/* Actions */}
         <div className="relative flex items-center gap-2">
+          {/* Tweaks */}
           <button
             onClick={() => setShowTweaks(v => !v)}
             aria-pressed={showTweaks}
@@ -47,6 +52,27 @@ export default function Header() {
           </button>
 
           {showTweaks && <TweaksPanel onClose={() => setShowTweaks(false)} />}
+
+          {/* Auth */}
+          {isSignedIn ? (
+            <UserMenu />
+          ) : (
+            <>
+              <button
+                onClick={() => openSignIn()}
+                className="px-3.5 py-1.5 rounded-full border border-border-strong text-[13px] text-ink-2 hover:border-ink hover:text-ink transition-all"
+              >
+                Sign in
+              </button>
+              <button
+                onClick={() => openSignUp()}
+                className="px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all"
+                style={{ background: "var(--accent)", color: "var(--accent-ink)" }}
+              >
+                Get started
+              </button>
+            </>
+          )}
         </div>
       </div>
     </header>
