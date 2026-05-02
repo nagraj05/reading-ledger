@@ -48,7 +48,7 @@ export default function Header() {
               <circle cx="6"  cy="15" r="1.5" stroke="currentColor" strokeWidth="1.4"/>
               <path d="M2 5h2M9 5h9M2 10h10M17 10h1M2 15h2M9 15h9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
             </svg>
-            Tweaks
+            
           </button>
 
           {showTweaks && <TweaksPanel onClose={() => setShowTweaks(false)} />}
